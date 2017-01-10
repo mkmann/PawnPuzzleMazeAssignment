@@ -47,6 +47,15 @@ public class State {
         return neighbours;
     }
 
+    public boolean goalStateReached(){
+
+        if(node1.getNumber() == 23 || node2.getNumber() == 23){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         return "State: " + node1.getNumber() + "/" + node2.getNumber();
