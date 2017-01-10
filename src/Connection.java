@@ -3,17 +3,12 @@
  */
 public class Connection {
 
-    private Node fromNode, toNode;
+    private Node toNode;
     private Board.Colour connectionType;
 
-    public Connection(Node fromNode, Node toNode, Board.Colour connectionType) {
-        this.fromNode = fromNode;
+    public Connection(Node toNode, Board.Colour connectionType) {
         this.toNode = toNode;
         this.connectionType = connectionType;
-    }
-
-    public Node getFromNode() {
-        return fromNode;
     }
 
     public Node getToNode() {
