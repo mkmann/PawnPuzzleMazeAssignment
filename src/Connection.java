@@ -1,12 +1,11 @@
-/**
- * Created by mattijs on 22/12/2016.
- */
+
+
 public class Connection {
 
     private Node toNode;
-    private Board.Colour connectionType;
+    private Colour connectionType;
 
-    public Connection(Node toNode, Board.Colour connectionType) {
+    public Connection(Node toNode, Colour connectionType) {
         this.toNode = toNode;
         this.connectionType = connectionType;
     }
@@ -15,7 +14,7 @@ public class Connection {
         return toNode;
     }
 
-    public Board.Colour getConnectionType() {
+    public Colour getConnectionType() {
         return connectionType;
     }
 }

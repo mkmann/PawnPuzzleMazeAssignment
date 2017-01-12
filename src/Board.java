@@ -1,12 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by mattijs on 22/12/2016.
- */
 public class Board {
-
-    public enum Colour {PURPLE, ORANGE, BLACK, GREEN, BLUE}
 
     private Node nodeOne, nodeTwo, nodeThree, nodeFour, nodeFive, nodeSix, nodeSeven, nodeEight, nodeNine, nodeTen, nodeEleven, nodeTwelve, nodeThirteen,
             nodeFourteen, nodeFifteen, nodeSixteen, nodeSeventeen, nodeEighteen, nodeNineteen, nodeTwenty, nodeTwentyOne, nodeTwentyTwo, nodeTwentyThree;
@@ -24,6 +19,7 @@ public class Board {
 
     }
 
+    
     private LinkedList<State> dfs(State start) {
 
         LinkedList<State> solution;

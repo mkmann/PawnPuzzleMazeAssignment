@@ -1,15 +1,13 @@
 import java.util.ArrayList;
 
-/**
- * Created by mattijs on 22/12/2016.
- */
+
 public class Node {
 
     private int number;
-    private Board.Colour nodeType;
+    private Colour nodeType;
     private ArrayList<Connection> connections;
 
-    public Node(int number, Board.Colour nodeType) {
+    public Node(int number, Colour nodeType) {
         this.number = number;
         this.nodeType = nodeType;
         connections = new ArrayList<>();
@@ -23,7 +21,7 @@ public class Node {
         return number;
     }
 
-    public Board.Colour getNodeType() {
+    public Colour getNodeType() {
         return nodeType;
     }
 

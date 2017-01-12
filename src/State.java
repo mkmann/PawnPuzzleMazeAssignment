@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mattijs on 22/12/2016.
- */
 public class State {
 
     private Node node1, node2;
@@ -47,11 +44,11 @@ public class State {
         return neighbours;
     }
 
-    public boolean goalStateReached(){
+    public boolean goalStateReached() {
 
-        if(node1.getNumber() == 23 || node2.getNumber() == 23){
+        if (node1.getNumber() == 23 || node2.getNumber() == 23) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
