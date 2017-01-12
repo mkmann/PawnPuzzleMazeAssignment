@@ -17,8 +17,10 @@ public class Board {
         Board board = new Board();
         board.setupBoard();
 
-        State state1 = new State(board.nodeThirteen, board.nodeSeventeen);
-        System.out.println(state1.getNeighbours());
+        State start = new State(board.nodeOne, board.nodeTwo);
+        LinkedList<State> solution = board.dfs(start);
+
+        System.out.println("Solution (" + solution.size() + " steps): " + solution);
 
     }
 
@@ -37,7 +39,6 @@ public class Board {
             for (State neighbour : neighbours) {//Iterate through
                 //For each state make a recursive call
                 solution = dfs(neighbour);
-                assert solution != null: "The state met a dead end";
                 if (isGoalReached(solution)) { //If goal reached add start first and return
                     solution.addFirst(start);
                     return solution;
@@ -124,7 +125,7 @@ public class Board {
         nodeFourteen.addConnection(new Connection(nodeTwentyThree, Colour.GREEN));
 
         nodeFifteen.addConnection(new Connection(nodeTwentyThree, Colour.PURPLE));
-        nodeFifteen.addConnection(new Connection(nodeTwentyTwo, Colour.BLACK));
+        nodeFifteen.addConnection(new Connection(nodeTwentyTwo, Colour.GREEN));
 
         nodeSixteen.addConnection(new Connection(nodeFifteen, Colour.GREEN));
 
