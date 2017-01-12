@@ -46,15 +46,12 @@ public class State {
 
     public boolean goalStateReached() {
 
-        if (node1.getNumber() == 23 || node2.getNumber() == 23) {
-            return true;
-        } else {
-            return false;
-        }
+        return (node1.getNumber() == 23 || node2.getNumber() == 23);
+
     }
 
     @Override
     public String toString() {
-        return "State: " + node1.getNumber() + "/" + node2.getNumber();
+        return node1.getNumber() + "/" + node2.getNumber();
     }
 }

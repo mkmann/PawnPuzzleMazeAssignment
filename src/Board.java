@@ -3,23 +3,31 @@ import java.util.List;
 
 public class Board {
 
-    private Node nodeOne, nodeTwo, nodeThree, nodeFour, nodeFive, nodeSix, nodeSeven, nodeEight, nodeNine, nodeTen, nodeEleven, nodeTwelve, nodeThirteen,
-            nodeFourteen, nodeFifteen, nodeSixteen, nodeSeventeen, nodeEighteen, nodeNineteen, nodeTwenty, nodeTwentyOne, nodeTwentyTwo, nodeTwentyThree;
+    private static Node nodeOne, nodeTwo;
 
+    public String getSolution() {
+        setupBoard();
+        LinkedList<State> solution = dfs(new State(nodeOne, nodeTwo));
+        String result = "Solution with finish node number 23: \nStarting state: " + solution.getFirst() + " -> \n";
+        int moveNumber = 0;
 
-    public static void main(String[] args) {
+        for (State state : solution) {
 
-        Board board = new Board();
-        board.setupBoard();
+            if (!state.equals(solution.getFirst()) && !state.equals(solution.getLast())) {
+                result += "Move " + moveNumber + ": " + state + " -> \n";
+            }
 
-        State start = new State(board.nodeOne, board.nodeTwo);
-        LinkedList<State> solution = board.dfs(start);
+            if (state.equals(solution.getLast())) {
+                result += "Move " + moveNumber + ": " + state + " (Finish reached)";
+            }
 
-        System.out.println("Solution (" + solution.size() + " steps): " + solution);
+            moveNumber++;
 
+        }
+
+        return result;
     }
 
-    
     private LinkedList<State> dfs(State start) {
 
         LinkedList<State> solution;
@@ -60,29 +68,32 @@ public class Board {
      */
     private void setupBoard() {
 
+        // Starting nodes
         nodeOne = new Node(1, Colour.PURPLE);
         nodeTwo = new Node(2, Colour.BLACK);
-        nodeThree = new Node(3, Colour.GREEN);
-        nodeFour = new Node(4, Colour.GREEN);
-        nodeFive = new Node(5, Colour.GREEN);
-        nodeSix = new Node(6, Colour.ORANGE);
-        nodeSeven = new Node(7, Colour.ORANGE);
-        nodeEight = new Node(8, Colour.PURPLE);
-        nodeNine = new Node(9, Colour.PURPLE);
-        nodeTen = new Node(10, Colour.BLACK);
-        nodeEleven = new Node(11, Colour.ORANGE);
-        nodeTwelve = new Node(12, Colour.PURPLE);
-        nodeThirteen = new Node(13, Colour.ORANGE);
-        nodeFourteen = new Node(14, Colour.GREEN);
-        nodeFifteen = new Node(15, Colour.ORANGE);
-        nodeSixteen = new Node(16, Colour.GREEN);
-        nodeSeventeen = new Node(17, Colour.GREEN);
-        nodeEighteen = new Node(18, Colour.BLACK);
-        nodeNineteen = new Node(19, Colour.ORANGE);
-        nodeTwenty = new Node(20, Colour.GREEN);
-        nodeTwentyOne = new Node(21, Colour.BLACK);
-        nodeTwentyTwo = new Node(22, Colour.BLACK);
-        nodeTwentyThree = new Node(23, Colour.BLUE);
+
+        // All other nodes
+        Node nodeThree = new Node(3, Colour.GREEN);
+        Node nodeFour = new Node(4, Colour.GREEN);
+        Node nodeFive = new Node(5, Colour.GREEN);
+        Node nodeSix = new Node(6, Colour.ORANGE);
+        Node nodeSeven = new Node(7, Colour.ORANGE);
+        Node nodeEight = new Node(8, Colour.PURPLE);
+        Node nodeNine = new Node(9, Colour.PURPLE);
+        Node nodeTen = new Node(10, Colour.BLACK);
+        Node nodeEleven = new Node(11, Colour.ORANGE);
+        Node nodeTwelve = new Node(12, Colour.PURPLE);
+        Node nodeThirteen = new Node(13, Colour.ORANGE);
+        Node nodeFourteen = new Node(14, Colour.GREEN);
+        Node nodeFifteen = new Node(15, Colour.ORANGE);
+        Node nodeSixteen = new Node(16, Colour.GREEN);
+        Node nodeSeventeen = new Node(17, Colour.GREEN);
+        Node nodeEighteen = new Node(18, Colour.BLACK);
+        Node nodeNineteen = new Node(19, Colour.ORANGE);
+        Node nodeTwenty = new Node(20, Colour.GREEN);
+        Node nodeTwentyOne = new Node(21, Colour.BLACK);
+        Node nodeTwentyTwo = new Node(22, Colour.BLACK);
+        Node nodeTwentyThree = new Node(23, Colour.BLUE);
 
         nodeOne.addConnection(new Connection(nodeFour, Colour.PURPLE));
         nodeOne.addConnection(new Connection(nodeFive, Colour.BLACK));
@@ -144,5 +155,4 @@ public class Board {
 
 
     }
-
 }
