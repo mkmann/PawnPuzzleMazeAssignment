@@ -1,6 +1,10 @@
 /**
  * Created by mattijs on 12/01/2017.
  */
+
+/**
+ * Application class containing the main method that calls the Board class and outputs the found solution.
+ */
 public class Application {
 
     public static void main(String[] args) {

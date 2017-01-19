@@ -28,6 +28,7 @@ public class Node {
         connections.add(connection);
     }
 
+    // Getters
     public int getNumber() {
         return number;
     }
