@@ -11,8 +11,6 @@ public class Board {
 
     //The position of the two nodes
     private static Node nodeOne, nodeTwo;
-    //set for visited states
-    HashSet<State> visitedStates;
     /**
      * The method sets up the board, and starts the depthFirstSearch from the starting position.
      * The result of this depth first is then formatted and displayed for the user.
@@ -20,7 +18,7 @@ public class Board {
      */
     public String getSolution() {
         setupBoard(); //Creates the board with it's nodes and connections
-        visitedStates = new HashSet<>();
+        HashSet<State> visitedStates = new HashSet<>();
         //Start the search
         LinkedList<State> solution = depthFirstSearch(new State(nodeOne, nodeTwo), visitedStates);
         //Make the string that will be displayed for the user
