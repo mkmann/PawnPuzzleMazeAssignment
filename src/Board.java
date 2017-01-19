@@ -3,11 +3,19 @@ import java.util.List;
 
 public class Board {
 
+    //The position of the two nodes
     private static Node nodeOne, nodeTwo;
 
-    public String getSolution() {
-        setupBoard();
-        LinkedList<State> solution = dfs(new State(nodeOne, nodeTwo));
+    /**
+     * The method sets up the board, and starts the depthFirstSearch from the starting position.
+     * The result of this depth first is then formatted and displayed for the user.
+     * @return A string displaying the different states from start to finish.
+     */
+    String getSolution() {
+        setupBoard(); //Creates the board with it's nodes and connections
+        //Start the search
+        LinkedList<State> solution = depthFirstSearch(new State(nodeOne, nodeTwo));
+        //Make the string that will be displayed for the user
         String result = "Solution with finish node number 23: \nStarting state: " + solution.getFirst() + " -> \n";
         int moveNumber = 0;
 
@@ -20,15 +28,18 @@ public class Board {
             if (state.equals(solution.getLast())) {
                 result += "Move " + moveNumber + ": " + state + " (Finish reached)";
             }
-
             moveNumber++;
-
         }
-
         return result;
     }
 
-    private LinkedList<State> dfs(State start) {
+    /**
+     * Recursive method that performs a depth first search through the graph. When the end
+     * state is reached, the method traveses back adding the states along the way.
+     * @param start that the method should perform depth first search on.
+     * @return the solution in a list of the different states
+     */
+    private LinkedList<State> depthFirstSearch(State start) {
 
         LinkedList<State> solution;
 
@@ -42,7 +53,7 @@ public class Board {
             List<State> neighbours = start.getNeighbours();
             for (State neighbour : neighbours) {//Iterate through
                 //For each state make a recursive call
-                solution = dfs(neighbour);
+                solution = depthFirstSearch(neighbour);
                 if (isGoalReached(solution)) { //If goal reached add start first and return
                     solution.addFirst(start);
                     return solution;
@@ -53,6 +64,11 @@ public class Board {
         return new LinkedList<State>();
     }
 
+    /**
+     * Checks if any off the states in the list has reached the finish state
+     * @param states that should be checked for reaching the end state
+     * @return true if goal is reached. False if otherwise
+     */
     private boolean isGoalReached(LinkedList<State> states) {
         for (State state : states) {
             if (state.goalStateReached()) {
@@ -95,6 +111,7 @@ public class Board {
         Node nodeTwentyTwo = new Node(22, Colour.BLACK);
         Node nodeTwentyThree = new Node(23, Colour.BLUE);
 
+        //Add connections to the different nodes
         nodeOne.addConnection(new Connection(nodeFour, Colour.PURPLE));
         nodeOne.addConnection(new Connection(nodeFive, Colour.BLACK));
 
@@ -152,7 +169,5 @@ public class Board {
         nodeTwentyOne.addConnection(new Connection(nodeTwentyThree, Colour.BLACK));
 
         nodeTwentyTwo.addConnection(new Connection(nodeSeventeen, Colour.ORANGE));
-
-
     }
 }
