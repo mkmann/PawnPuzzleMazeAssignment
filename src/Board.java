@@ -1,5 +1,7 @@
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The board class contains nodes who all have connections to one another.
@@ -10,7 +12,8 @@ public class Board {
 
     //The position of the two nodes
     private static Node nodeOne, nodeTwo;
-
+    //set for visited states
+    HashSet<State> visitedStates;
     /**
      * The method sets up the board, and starts the depthFirstSearch from the starting position.
      * The result of this depth first is then formatted and displayed for the user.
@@ -18,8 +21,9 @@ public class Board {
      */
     public String getSolution() {
         setupBoard(); //Creates the board with it's nodes and connections
+        visitedStates = new HashSet<>();
         //Start the search
-        LinkedList<State> solution = depthFirstSearch(new State(nodeOne, nodeTwo));
+        LinkedList<State> solution = depthFirstSearch(new State(nodeOne, nodeTwo), visitedStates);
         //Make the string that will be displayed for the user
         String result = "Solution with finish node number 23: \nStarting state: " + solution.getFirst() + " -> \n";
         int moveNumber = 0;
@@ -44,10 +48,10 @@ public class Board {
      * @param start that the method should perform depth first search on.
      * @return the solution in a list of the different states
      */
-    private LinkedList<State> depthFirstSearch(State start) {
+    private LinkedList<State> depthFirstSearch(State start, HashSet<State> visited) {
 
         LinkedList<State> solution;
-
+        visited.add(start);
         if (start.goalStateReached()) { //Goal has been reached
             //Instantiate the LinkedList with the final state and return
             solution = new LinkedList<>();
@@ -57,14 +61,17 @@ public class Board {
             //Get all of the neighbours
             List<State> neighbours = start.getNeighbours();
             for (State neighbour : neighbours) {//Iterate through
-                //For each state make a recursive call
-                solution = depthFirstSearch(neighbour);
-                if (isGoalReached(solution)) { //If goal reached add start first and return
-                    solution.addFirst(start);
-                    return solution;
+                if(!visited.contains(neighbour)) {
+                    //For each state make a recursive call
+                    solution = depthFirstSearch(neighbour, visited);
+                    if (isGoalReached(solution)) { //If goal reached add start first and return
+                        solution.addFirst(start);
+                        return solution;
+                    }
                 }
             }
         }
+        visited.remove(start);
         //No possible solutions so return empty LinkedList
         return new LinkedList<State>();
     }
