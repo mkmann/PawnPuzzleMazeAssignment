@@ -11,7 +11,7 @@ public class Board {
      * The result of this depth first is then formatted and displayed for the user.
      * @return A string displaying the different states from start to finish.
      */
-    String getSolution() {
+    public String getSolution() {
         setupBoard(); //Creates the board with it's nodes and connections
         //Start the search
         LinkedList<State> solution = depthFirstSearch(new State(nodeOne, nodeTwo));
