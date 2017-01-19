@@ -34,7 +34,6 @@ public class State {
             }
 
         }
-
         for (Connection connection : node2.getConnections()) {
 
             if (node1.getNodeType().equals(connection.getConnectionType())) {
@@ -42,9 +41,7 @@ public class State {
                 neighbours.add(new State(node1, connection.getToNode()));
 
             }
-
         }
-
         return neighbours;
     }
 

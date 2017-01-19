@@ -1,6 +1,11 @@
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The board class contains nodes who all have connections to one another.
+ * A depth First Search is executed to find a path for the pawns from start to one of the reaches
+ * the finish state
+ */
 public class Board {
 
     //The position of the two nodes
