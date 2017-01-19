@@ -46,6 +46,7 @@ public class Board {
      * Recursive method that performs a depth first search through the graph. When the end
      * state is reached, the method traveses back adding the states along the way.
      * @param start that the method should perform depth first search on.
+     * @param visited HashSet that contains all visisted nodes in the current search, used for cycle detection
      * @return the solution in a list of the different states
      */
     private LinkedList<State> depthFirstSearch(State start, HashSet<State> visited) {
